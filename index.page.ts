@@ -1,24 +1,23 @@
 export const layout = "layout.tsx";
-export const title = "Ryan Dahl";
+export const title = "Dixit";
 export const url = "/";
 
 export default function* ({ search }: { search: any }) {
   const allPages = search.pages();
   const posts = allPages
     .filter((page: any) => page.title && page.publish_date)
-    .sort((a: any, b: any) =>
-      new Date(b.publish_date).getTime() - new Date(a.publish_date).getTime()
+    .sort(
+      (a: any, b: any) =>
+        new Date(b.publish_date).getTime() - new Date(a.publish_date).getTime(),
     );
 
   const content = `
     <div class="header">
-      <img src="/ry.jpg" alt="Ryan Dahl" class="avatar">
+      <img src="/dixit.jpg" alt="dixit" class="avatar">
       <div class="header-content">
-        <h1 class="site-title">Ryan Dahl</h1>
+        <h1 class="site-title">dixit</h1>
         <div class="links">
-          <a href="mailto:ry@tinyclouds.org">Email</a>
-          <a href="https://github.com/ry">GitHub</a>
-          <a href="https://twitter.com/rough__sea">Twitter</a>
+          <a href="https://github.com/owncook1">GitHub</a>
           <a href="/feed">RSS</a>
         </div>
       <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
@@ -26,28 +25,29 @@ export default function* ({ search }: { search: any }) {
     </div>
     
     <ul class="post-list">
-      ${
-    posts.map((post: any) => {
-      const formattedDate =
-        new Date(post.publish_date).toISOString().split("T")[0];
+      ${posts
+        .map((post: any) => {
+          const formattedDate = new Date(post.publish_date)
+            .toISOString()
+            .split("T")[0];
 
-      // Fix the URL to remove /posts/ prefix
-      const cleanUrl = post.url.replace("/posts/", "/");
+          // Fix the URL to remove /posts/ prefix
+          const cleanUrl = post.url.replace("/posts/", "/");
 
-      return `
+          return `
           <li>
             <h2><a href="${cleanUrl}">${post.title}</a></h2>
             <div class="post-date">${formattedDate}</div>
           </li>
         `;
-    }).join("")
-  }
+        })
+        .join("")}
     </ul>
   `;
 
   yield {
     url: "/",
-    title: "Ryan Dahl",
+    title: "Dixit",
     layout: "layout.tsx",
     content: content,
   };

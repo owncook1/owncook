@@ -1,11 +1,13 @@
 export const layout = "layout.tsx";
-export const title = "Ryan Dahl";
+export const title = "Dixit";
 
 export default function Home({ search }: { search: any }) {
-  const posts = search.pages("src.path*=/posts/")
+  const posts = search
+    .pages("src.path*=/posts/")
     .filter((page: any) => page.publish_date)
-    .sort((a: any, b: any) =>
-      new Date(b.publish_date).getTime() - new Date(a.publish_date).getTime()
+    .sort(
+      (a: any, b: any) =>
+        new Date(b.publish_date).getTime() - new Date(a.publish_date).getTime(),
     );
 
   return (

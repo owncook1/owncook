@@ -1,22 +1,22 @@
-export default function Layout(
-  { title, background, children }: {
-    title?: string;
-    background?: string;
-    children: unknown;
-  },
-) {
+export default function Layout({
+  title,
+  background,
+  children,
+}: {
+  title?: string;
+  background?: string;
+  children: unknown;
+}) {
   return (
     <html lang="en">
       <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>
-          {title && title !== "Ryan Dahl" ? `${title} | ` : ""}Ryan Dahl
-        </title>
+        <title>{title && title !== "dixit" ? `${title} | ` : ""}dixit</title>
         <link
           rel="alternate"
           type="application/rss+xml"
-          title="Ryan Dahl"
+          title="Dixit"
           href="/feed"
         />
         <script
@@ -296,9 +296,7 @@ export default function Layout(
         />
       </head>
       <body>
-        <div class="container">
-          {children}
-        </div>
+        <div class="container">{children}</div>
       </body>
     </html>
   );
